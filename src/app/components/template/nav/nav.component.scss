@@ -1,0 +1,46 @@
+.nav {
+    height: 100vh;
+}
+
+.side-nav {
+    background-color: rgb(214, 107, 107);
+}
+
+.nav-content {
+    background-color: rgb(247, 247, 247);
+    padding: 15px 0 0 15px;
+}
+
+li {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 20px;
+}
+
+a {
+    font-size: 16px;
+    list-style: none;
+    color: var(--text-white);
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+i {
+    color: var(--text-white);
+}
+
+@media (max-width: 1536px)
+  {
+    a, i {font-size: 14px;}
+  }
+
+@media (max-width: 1280px)
+  {
+    a, i {font-size: 12px;}
+  }
+
+  @media (max-width: 1098px)
+  {
+    a, i {font-size: 10px;}
+  }

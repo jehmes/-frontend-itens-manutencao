@@ -1,0 +1,26 @@
+.logo {
+    width: 100px;
+}
+
+.header {
+    display: flex;
+    height: 80px;
+}
+
+.header-itens {
+    width: 100%;
+    margin-left: 40px;
+    display: flex;
+    font-family: 'Poppins', sans-serif;
+}
+
+.item {
+    color: var(--titulo);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+mat-toolbar {
+    background-color: rgb(235, 235, 235);
+}
