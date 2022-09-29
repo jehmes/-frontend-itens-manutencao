@@ -13,7 +13,11 @@ import { HeaderComponent } from './components/template/header/header.component';
 import { FooterComponent } from './components/template/footer/footer.component';
 import { NavComponent } from './components/template/nav/nav.component';
 import { HomeComponent } from './views/home/home.component';
-import { CrudProductComponent } from './views/product/crud-product/crud-product.component';
+import { CreateProductComponent } from './views/product/crud/create-product/create-product.component';
+import { UpdateProductComponent } from './views/product/crud/update-product/update-product.component';
+import { ReadProductComponent } from './views/product/crud/read-product/read-product.component';
+import { HomeProductComponent } from './views/product/crud/home-product/home-product.component';
+import { CatalogProductComponent } from './views/product/catalog-product/catalog-product.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +26,11 @@ import { CrudProductComponent } from './views/product/crud-product/crud-product.
     FooterComponent,
     NavComponent,
     HomeComponent,
-    CrudProductComponent
+    CreateProductComponent,
+    UpdateProductComponent,
+    ReadProductComponent,
+    HomeProductComponent,
+    CatalogProductComponent
   ],
   imports: [
     BrowserModule,

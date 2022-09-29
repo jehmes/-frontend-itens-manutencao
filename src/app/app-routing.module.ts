@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './views/home/home.component';
-import { CrudProductComponent } from './views/product/crud-product/crud-product.component';
+import { CreateProductComponent } from './views/product/crud/create-product/create-product.component';
+import { HomeProductComponent } from './views/product/crud/home-product/home-product.component';
 
 const routes: Routes = [{
-  path: "", component: HomeComponent
+  path: "", component: HomeComponent, children:[]
 }, {
-  path: "product", component: CrudProductComponent
+  path: "product", component: HomeProductComponent
+}, {
+  path: "product/create", component: CreateProductComponent
 }
 ];
 
