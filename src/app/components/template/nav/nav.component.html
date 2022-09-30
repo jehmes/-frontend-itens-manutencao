@@ -1,15 +1,30 @@
-<div class="nav col-md-12">
-    <div  class="col-md-1 side-nav">
-        <ul>
-            <li>
-                <i class="material-icons">
-                    content_paste
-                </i>             
-                <a routerLink="product">Manage Products</a>
-            </li>
-        </ul>
-    </div>
-    <div class="col-md-11 nav-content">
+<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+    
+    <mat-toolbar color="header-color" class="example-toolbar">
+      <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+      <app-header></app-header>
+    </mat-toolbar>
+  
+    <mat-sidenav-container class="example-sidenav-container"
+                           [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+      <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
+                   [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+        <mat-nav-list>
+            <ul>
+                <li>
+                    <i class="material-icons">
+                        content_paste
+                    </i>             
+                    <a routerLink="product">Gerenciar Produtos</a>
+                </li>
+            </ul>
+        </mat-nav-list>
+      </mat-sidenav>
+  
+      <mat-sidenav-content>
         <router-outlet></router-outlet>
-    </div>
-</div>
+      </mat-sidenav-content>
+
+    </mat-sidenav-container>
+    <app-footer></app-footer>
+  </div>
