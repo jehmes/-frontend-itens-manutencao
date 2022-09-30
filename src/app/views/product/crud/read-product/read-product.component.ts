@@ -43,7 +43,7 @@ export class ReadProductComponent implements OnInit {
   createForm() {
     this.filterForm = this.formBuilder.group({
       name: [null],
-      moneyValue: [null, Validators.pattern(/^[0-9]\d*$/)],
+      moneyValue: [null, Validators.pattern(/^[0-9]*\.?[0-9]*$/)],
       defective: [null, Validators.pattern(/^[0-9]\d*$/)],
       quantity: [null, Validators.pattern(/^[0-9]\d*$/)]
     })
@@ -68,7 +68,5 @@ export class ReadProductComponent implements OnInit {
       this.showPaginator = this.dataSource.data.length > 0 ? true : false;
     })
   }
-
-  
 
 }

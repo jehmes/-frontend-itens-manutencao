@@ -41,8 +41,7 @@
           <div class="div-item">
             <span>Valor</span>
             <p class="info-item">
-              <i class="material-icons">attach_money</i>
-              {{item.moneyValue}}
+              {{item.moneyValue | currency : 'BRL'}}
             </p>
           </div>
 

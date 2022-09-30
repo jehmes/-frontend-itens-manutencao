@@ -19,6 +19,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {LOCALE_ID, DEFAULT_CURRENCY_CODE} from '@angular/core';
 
 import { HeaderComponent } from './components/template/header/header.component';
 import { FooterComponent } from './components/template/footer/footer.component';
@@ -29,6 +30,10 @@ import { UpdateProductComponent } from './views/product/crud/update-product/upda
 import { ReadProductComponent } from './views/product/crud/read-product/read-product.component';
 import { HomeProductComponent } from './views/product/crud/home-product/home-product.component';
 import { CatalogProductComponent } from './views/product/catalog-product/catalog-product.component';
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
+
+registerLocaleData(localePt);
 
 @NgModule({
   declarations: [
@@ -64,7 +69,9 @@ import { CatalogProductComponent } from './views/product/catalog-product/catalog
     MatInputModule,
     MatSnackBarModule
   ],
-  providers: [],
+  providers: [{ provide: LOCALE_ID, useValue: 'pt' },
+    // *************************************************
+    { provide: DEFAULT_CURRENCY_CODE, useValue: 'BRL' },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
