@@ -1,5 +1,5 @@
 .nav {
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .side-nav {
@@ -16,6 +16,7 @@ li {
     flex-direction: row;
     align-items: center;
     margin-top: 20px;
+    cursor: pointer;
 }
 
 a {
