@@ -1,1 +1,40 @@
-<p>catalog-product works!</p>
+<div class="main">
+  <h2>Produtos disponíveis</h2>
+
+  <div class="products">
+
+    <div class="card-for" *ngFor="let item of allproducts">
+      <div class="card">
+
+        <img class="img-height" src={{item.binaryImage}} alt="image">
+        <mat-card-content>
+          <p>
+            <strong>{{item.name}}</strong>
+          </p>
+        </mat-card-content>
+
+        <mat-card-content class="info">
+
+          <div class="div-item">
+            <span>Valor</span>
+            <p class="info-item">
+              <i class="material-icons">attach_money</i>
+              {{item.moneyValue}}
+            </p>
+          </div>
+
+          <div class="div-item">
+            <span>Disponível</span>
+            <p class="info-item">
+              <i class="material-icons">event_available</i>
+              {{item.quantity}}
+            </p>
+          </div>
+          
+        </mat-card-content>
+      </div>
+
+    </div>
+
+  </div>
+</div>
