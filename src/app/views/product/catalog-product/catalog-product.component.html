@@ -1,6 +1,29 @@
 <div class="main">
   <h2>Produtos disponíveis</h2>
 
+  <div class="filters row">
+    <div class="sort col-md-1">
+      <label for="">Ordenar por:</label>
+      <select class="form-select" aria-label="Default select example" [(ngModel)]="chosenFilterColumn"
+        (change)="filterChange()">
+        <option selected value="">Selecione</option>
+        <option value="name">Nome</option>
+        <option value="quantity">Qtd disponível</option>
+        <option value="defective">Qtd defeituoso</option>
+      </select>
+    </div>
+
+    <div class="sort col-md-1">
+        <label for="">Ordenar em:</label>
+        <select class="form-select" aria-label="Default select example" [(ngModel)]="chosenFilterType"
+        (change)="filterChange()">
+          <option selected value="">Selecione</option>
+          <option value="ASC">ASC</option>
+          <option value="DESC">DESC</option>
+        </select>
+      </div>
+  </div>
+
   <div class="products">
 
     <div class="card-for" *ngFor="let item of allproducts">
@@ -30,7 +53,7 @@
               {{item.quantity}}
             </p>
           </div>
-          
+
         </mat-card-content>
       </div>
 

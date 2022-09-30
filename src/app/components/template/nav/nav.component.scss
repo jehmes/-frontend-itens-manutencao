@@ -18,3 +18,7 @@ li {
 .mat-sidenav {
   width: 140px;
 }
+
+mat-sidenav-content {
+  overflow-x: hidden;
+}
