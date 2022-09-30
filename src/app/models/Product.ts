@@ -3,7 +3,7 @@ export interface Product {
 	name?: string;
 	quantity?: number; 
 	defective?: number; 
-	available?: number; 
+	moneyValue?: number; 
 	imageName?: string; 
 	binaryImage?: string; 
 }

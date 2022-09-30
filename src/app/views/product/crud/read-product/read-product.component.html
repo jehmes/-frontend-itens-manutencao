@@ -1,3 +1,62 @@
+<div class="body fadeIn">
+
+  <div class="formFilter">
+    <h2>Filtros</h2>
+
+    <div>
+      <form [formGroup]="filterForm" (ngSubmit)="filter()" enctype="multipart/form-data">
+        <div class="row col-md-12 filters">
+
+          <div class="filter col-md-2">
+            <label for="">Nome</label>
+            <input type="text" class="form-control" placeholder="Nome" aria-label="Nome" aria-describedby="basic-addon1"
+              formControlName="name">
+          </div>
+
+          <div class="filter col-md-2">
+            <label for="">Quantidade</label>
+            <input type="text" class="form-control" placeholder="Quantidade" aria-label="Quantidade"
+              aria-describedby="basic-addon1" formControlName="quantity">
+            <div class="invalid"
+              *ngIf="filterForm.controls['quantity'].touched && filterForm.controls['quantity'].invalid">
+              <span>Valor inválido</span>
+            </div>
+          </div>
+
+          <div class="filter col-md-2">
+            <label for="">Defeituosos</label>
+            <input type="text" class="form-control" placeholder="Defeituosos" aria-label="Defeituosos"
+              aria-describedby="basic-addon1" formControlName="defective">
+              <div class="invalid"
+              *ngIf="filterForm.controls['defective'].touched && filterForm.controls['defective'].invalid">
+              <span>Valor inválido</span>
+            </div>
+          </div>
+
+          <div class="filter col-md-2">
+            <label for="">Valor</label>
+            <input type="text" class="form-control" placeholder="Valor" aria-label="Valor"
+              aria-describedby="basic-addon1" formControlName="moneyValue">
+              <div class="invalid"
+              *ngIf="filterForm.controls['moneyValue'].touched && filterForm.controls['moneyValue'].invalid">
+              <span>Valor inválido</span>
+            </div>
+          </div>
+
+          <div class="col-md-2">
+            <button mat-raised-button class="filter-button" type="submit">Filtrar</button>
+            <button mat-raised-button class="filter-button" type="reset">Limpar</button>
+          </div>
+
+        </div>
+      </form>
+    </div>
+
+  </div>
+
+</div>
+
+
 <div class="container col-md-8">
   <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8 table">
 
@@ -12,12 +71,12 @@
     </ng-container>
 
     <ng-container matColumnDef="defective">
-      <th mat-header-cell *matHeaderCellDef> Defeituosos </th>
+      <th mat-header-cell mat-sort-header *matHeaderCellDef> Defeituosos </th>
       <td mat-cell *matCellDef="let element"> {{element.defective}} </td>
     </ng-container>
 
     <ng-container matColumnDef="moneyValue">
-      <th mat-header-cell *matHeaderCellDef> Valor </th>
+      <th mat-header-cell mat-sort-header *matHeaderCellDef> Valor </th>
       <td mat-cell *matCellDef="let element"> {{element.moneyValue}} </td>
     </ng-container>
 
@@ -25,6 +84,9 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
   </table>
-  <mat-paginator #paginator [length]="100" [pageSize]="3" [pageSizeOptions]="[3, 5, 10]" aria-label="Select page">
-</mat-paginator>
+  <mat-paginator [hidden]="!showPaginator" #paginator [length]="100" [pageSize]="3" [pageSizeOptions]="[3, 7, 10]" aria-label="Select page">
+  </mat-paginator>
+  <div class="sem-registro" [hidden]="showPaginator">
+    <span>Não há registros</span>
+  </div>
 </div>

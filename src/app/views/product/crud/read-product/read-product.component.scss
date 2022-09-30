@@ -10,3 +10,30 @@ th {
 td {
     vertical-align: middle;
 }
+
+.filter-button {
+    margin-top: 19px;
+}
+
+.formFilter {
+    margin-top: 60px;
+}
+
+.invalid span {
+    color: rgb(255, 10, 10);
+}
+
+.sem-registro {
+    background-color: #fff;
+    text-align: center;
+}
+
+.sem-registro span {
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    line-height: 40px;
+    font-size: 1rem;
+}
+
+.filter-button:nth-child(2) {
+    margin-left: 15px;
+}
