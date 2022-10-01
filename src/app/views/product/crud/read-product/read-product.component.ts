@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
+import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Product } from 'src/app/models/Product';
 import { ProductFilter } from 'src/app/models/ProductFilter'
@@ -19,24 +19,33 @@ export class ReadProductComponent implements OnInit {
   dataSource!: MatTableDataSource<Product>;
   showPaginator = true;
 
-  @ViewChild(MatPaginator, {static: false}) paginator! : MatPaginator;
-  @ViewChild(MatSort, {static: false}) sort!: MatSort;
+  @ViewChild(MatPaginator, { static: false }) paginator!: MatPaginator;
+  @ViewChild(MatSort, { static: false }) sort!: MatSort;
 
   filterForm!: FormGroup;
 
   constructor(private service: ServiceProductService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-    this.getAllProducts();
+    this.getProductsByFilter();
     this.createForm();
+    setTimeout(() => {
+      this.setFilters();
+      this.setSort();
+    }, 500)
+
   }
 
-  getAllProducts() {
-    this.service.getAllProducts().subscribe((data) => {
+  getProductsByFilter() {
+    let filter = this.service.getFilter()
+    this.service.getProductsByFilter(filter).subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
-      this.dataSource.paginator = this.paginator
-      this.dataSource.sort = this.sort;     
+      this.setPage()
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
       this.showPaginator = this.dataSource.data.length > 0 ? true : false;
+    }, (response) => {
+      console.log(response)
     })
   }
 
@@ -67,6 +76,63 @@ export class ReadProductComponent implements OnInit {
       this.dataSource.sort = this.sort;
       this.showPaginator = this.dataSource.data.length > 0 ? true : false;
     })
+  }
+
+  eventSortData(evt: any) {
+    this.service.saveSessionStorage(null, evt, null);
+  }
+
+  eventFilter() {
+    this.service.saveSessionStorage(this.filterForm.value, null, null);
+  }
+
+  eventPageSize(evt: any) {
+    this.service.saveSessionStorage(null, null, evt);
+  }
+
+
+  setSort() {
+    let sort = this.service.getSort()
+    if (sort == null) {
+      return;
+    }
+    const sortState: Sort = {
+      active: sort.active,
+      direction: sort.direction
+    };
+    this.sort.active = sortState.active;
+    this.sort.direction = sortState.direction;
+    this.sort.sortChange.emit(sortState);
+
+  }
+
+  setFilters() {
+    let filter = this.service.getFilter();
+    if (filter == null) {
+      return;
+    }
+    this.filterForm.get("name")?.setValue(filter.name);
+    this.filterForm.get("moneyValue")?.setValue(filter.moneyValue);
+    this.filterForm.get("defective")?.setValue(filter.defective);
+    this.filterForm.get("quantity")?.setValue(filter.quantity);
+  }
+
+  setPage() {
+    let page = this.service.getPageSize();
+    if (page == null) {
+      return;
+    }
+    this.paginator.pageSize = page.pageSize;
+    this.paginator.pageIndex = page.pageIndex;
+    this.dataSource.paginator = this.paginator;
+  }
+
+  clear() {
+    this.filterForm.get("name")?.setValue(null);
+    this.filterForm.get("moneyValue")?.setValue(null);
+    this.filterForm.get("defective")?.setValue(null);
+    this.filterForm.get("quantity")?.setValue(null);
+    this.eventFilter()
   }
 
 }

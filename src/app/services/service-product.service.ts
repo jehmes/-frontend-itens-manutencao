@@ -42,6 +42,10 @@ export class ServiceProductService {
   getProductsByFilter(product: ProductFilter): Observable<Product[]> {
     let newUrl = this.urlGetAll;
 
+    if (product == null) {
+      return this.http.get<Product[]>(newUrl);
+    }
+
     if (product.name !== null || product.quantity !== null || product.defective !== null || product.moneyValue !== null) {
       newUrl = this.urlGetByFilter;
       
@@ -69,5 +73,50 @@ export class ServiceProductService {
       verticalPosition: "top",
       panelClass: [color],
     })
+  }
+
+  saveSessionStorage(filter: any, sort: any, pageSize: any) {
+
+    if (filter !== null)
+    sessionStorage.setItem('filter', JSON.stringify(filter));
+    else if (pageSize !== null)
+    sessionStorage.setItem('pageSize', JSON.stringify(pageSize));
+    else
+    sessionStorage.setItem('sort', JSON.stringify(sort));
+  }
+
+  getFilter() {
+    let filter: any = sessionStorage.getItem('filter');
+    console.log(filter)
+    if (filter == null) {
+      return null;
+    }
+    let objectFilter = JSON.parse(filter);
+    objectFilter.name = objectFilter.name === "" ? null : objectFilter.name;
+    objectFilter.moneyValue = objectFilter.moneyValue === "" ? null : objectFilter.moneyValue;
+    objectFilter.defective = objectFilter.defective === "" ? null : objectFilter.defective;
+    objectFilter.quantity = objectFilter.quantity === "" ? null : objectFilter.quantity;
+
+    return objectFilter;
+  }
+
+  getSort() {
+    let sort: any = sessionStorage.getItem('sort');
+    console.log(sort)
+    if (sort == null) {
+      return null;
+    }
+    let objectSort = JSON.parse(sort);
+    return objectSort;
+  }
+
+  getPageSize() {
+    let pageSize: any = sessionStorage.getItem('pageSize');
+    console.log(pageSize)
+    if (pageSize == null) {
+      return null;
+    }
+    let objectPageSize = JSON.parse(pageSize);
+    return objectPageSize;
   }
 }

@@ -4,7 +4,7 @@
     <h2>Filtros</h2>
 
     <div>
-      <form [formGroup]="filterForm" (ngSubmit)="filter()" enctype="multipart/form-data">
+      <form [formGroup]="filterForm" (keyup)="eventFilter()" (ngSubmit)="filter()" enctype="multipart/form-data">
         <div class="row col-md-12 filters">
 
           <div class="filter col-md-2">
@@ -45,7 +45,7 @@
 
           <div class="col-md-2">
             <button mat-raised-button class="filter-button" type="submit">Filtrar</button>
-            <button mat-raised-button class="filter-button" type="reset">Limpar</button>
+            <button mat-raised-button class="filter-button" (click)="clear()" type="reset">Limpar</button>
           </div>
 
         </div>
@@ -58,7 +58,7 @@
 
 
 <div class="container col-md-8">
-  <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8 table">
+  <table mat-table matSort (matSortChange)="eventSortData($event)" [dataSource]="dataSource" class="mat-elevation-z8 table">
 
     <ng-container matColumnDef="name">
       <th mat-header-cell mat-sort-header *matHeaderCellDef> Nome </th>
@@ -84,7 +84,7 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
   </table>
-  <mat-paginator [hidden]="!showPaginator" #paginator [length]="100" [pageSize]="3" [pageSizeOptions]="[3, 7, 10]" aria-label="Select page">
+  <mat-paginator [hidden]="!showPaginator" #paginator (page)="eventPageSize($event)" [length]="100" [pageSize]="3" [pageSizeOptions]="[3, 7, 10]" aria-label="Select page">
   </mat-paginator>
   <div class="sem-registro" [hidden]="showPaginator">
     <span>Não há registros</span>
