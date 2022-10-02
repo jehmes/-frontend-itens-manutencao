@@ -20,6 +20,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {LOCALE_ID, DEFAULT_CURRENCY_CODE} from '@angular/core';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatDialogModule} from '@angular/material/dialog';
 
 import { HeaderComponent } from './components/template/header/header.component';
 import { FooterComponent } from './components/template/footer/footer.component';
@@ -32,6 +34,7 @@ import { HomeProductComponent } from './views/product/crud/home-product/home-pro
 import { CatalogProductComponent } from './views/product/catalog-product/catalog-product.component';
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
+import { PopUpDeleteComponent } from './components/pop-up-delete/pop-up-delete.component';
 
 registerLocaleData(localePt);
 
@@ -46,7 +49,8 @@ registerLocaleData(localePt);
     UpdateProductComponent,
     ReadProductComponent,
     HomeProductComponent,
-    CatalogProductComponent
+    CatalogProductComponent,
+    PopUpDeleteComponent
   ],
   imports: [
     BrowserModule,
@@ -67,7 +71,9 @@ registerLocaleData(localePt);
     FormsModule,
     ReactiveFormsModule,
     MatInputModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatTooltipModule,
+    MatDialogModule
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'pt' },
     // *************************************************

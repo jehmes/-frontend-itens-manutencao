@@ -1,1 +1,63 @@
-<p>create-product works!</p>
+<div class="body fadeIn">
+  <mat-card class="mat-card">
+
+    <mat-card-title>CADASTRAR PRODUTO</mat-card-title>
+    <span class="back" routerLink="product" matTooltip="Voltar" matTooltipPosition="above"><i
+        class="fas fa-arrow-left"></i></span>
+
+    <form class="form" [formGroup]="cadastroForm" (ngSubmit)="createProduct()">
+
+      <div class="col-md-12">
+        <div class="filter col-md-12">
+          <label for="">Nome</label>
+          <input type="text" class="form-control" minlength="1" maxlength="50" placeholder="Nome" aria-label="Nome"
+            formControlName="name" required>
+          <div class="invalid" *ngIf="cadastroForm.controls['name'].touched && cadastroForm.controls['name'].invalid">
+            <span>Valor inválido</span>
+          </div>
+        </div>
+
+        <div class="filter col-md-12">
+          <label for="">Quantidade disponível</label>
+          <input class="form-control" type="text" placeholder="Quantidade disponível" min="1" maxlength="8"
+            formControlName="quantity" required>
+          <div class="invalid"
+            *ngIf="cadastroForm.controls['quantity'].touched && cadastroForm.controls['quantity'].invalid">
+            <span>Valor inválido</span>
+          </div>
+        </div>
+
+        <div class="filter col-md-12">
+          <label for="">Quantidade defeito</label>
+          <input class="form-control" type="text" placeholder="Quantidade defeito" min="1" maxlength="8"
+            formControlName="defective" required>
+          <div class="invalid"
+            *ngIf="cadastroForm.controls['defective'].touched && cadastroForm.controls['defective'].invalid">
+            <span>Valor inválido</span>
+          </div>
+        </div>
+
+        <div class="filter col-md-12">
+          <label for="">Valor</label>
+          <input type="text" class="form-control" placeholder="Valor" min="1" maxlength="8" 
+          formControlName="moneyValue" required>
+          <div class="invalid"
+            *ngIf="cadastroForm.controls['moneyValue'].touched && cadastroForm.controls['moneyValue'].invalid">
+            <span>Valor inválido</span>
+          </div>
+        </div>
+
+        <div class="file-input">
+          <input type="file" name="file" class="form-control" id="customFile" maxlength="50"
+            placeholder="URL" [(ngModel)]="teste" [ngModelOptions]="{standalone: true}" (change)="onChange($event)" required>
+        </div>
+
+        <div class="buttons">
+          <button mat-raised-button class="red" type="submit">Cadastrar</button>
+          <button mat-raised-button class="button" (click)="limparForm()" type="reset">Limpar</button>
+        </div>
+      </div>
+    </form>
+
+  </mat-card>
+</div>

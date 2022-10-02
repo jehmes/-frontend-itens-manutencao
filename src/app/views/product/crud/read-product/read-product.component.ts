@@ -1,10 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { Product } from 'src/app/models/Product';
 import { ProductFilter } from 'src/app/models/ProductFilter'
+import {PopUpDeleteComponent} from 'src/app/components/pop-up-delete/pop-up-delete.component'
 
 import { ServiceProductService } from 'src/app/services/service-product.service';
 
@@ -15,7 +18,7 @@ import { ServiceProductService } from 'src/app/services/service-product.service'
 })
 export class ReadProductComponent implements OnInit {
 
-  displayedColumns: string[] = ['name', 'quantity', 'defective', 'moneyValue'];
+  displayedColumns: string[] = ['name', 'quantity', 'defective', 'moneyValue', 'actions'];
   dataSource!: MatTableDataSource<Product>;
   showPaginator = true;
 
@@ -24,7 +27,7 @@ export class ReadProductComponent implements OnInit {
 
   filterForm!: FormGroup;
 
-  constructor(private service: ServiceProductService, private formBuilder: FormBuilder) { }
+  constructor(private service: ServiceProductService, private formBuilder: FormBuilder, private router: Router, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getProductsByFilter();
@@ -128,11 +131,20 @@ export class ReadProductComponent implements OnInit {
   }
 
   clear() {
-    this.filterForm.get("name")?.setValue(null);
-    this.filterForm.get("moneyValue")?.setValue(null);
-    this.filterForm.get("defective")?.setValue(null);
-    this.filterForm.get("quantity")?.setValue(null);
+    this.filterForm.reset()
     this.eventFilter()
   }
 
+  redirect(e: any) {
+    let url: string = "product/update/" + e.id
+        this.router.navigateByUrl(url);
+  }
+
+  openConfirm(element: any) {
+    this.dialog.open(PopUpDeleteComponent, {
+      data: {
+        productId: element.id
+      }
+    })
+  }
 }

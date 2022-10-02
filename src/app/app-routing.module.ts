@@ -11,7 +11,7 @@ const routes: Routes = [
 { path: "", component: HomeComponent, pathMatch: "full", children: [] }, 
 { path: "product", component: HomeProductComponent}, 
 { path: "product/create", component: CreateProductComponent}, 
-{ path: "product/update", component: UpdateProductComponent}, 
+{ path: "product/update/:id", component: UpdateProductComponent}, 
 { path: "product/read", component: ReadProductComponent}, 
 { path: "product/catalog-product", component: CatalogProductComponent},
 { path: '**', redirectTo: '' }

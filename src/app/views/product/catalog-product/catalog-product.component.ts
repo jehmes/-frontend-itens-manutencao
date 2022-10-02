@@ -22,7 +22,6 @@ export class CatalogProductComponent implements OnInit {
   getAllProducts() {
     this.service.getAllProducts().subscribe((data) => {
       this.allproducts = data;
-      console.log(data)
     })
   }
 

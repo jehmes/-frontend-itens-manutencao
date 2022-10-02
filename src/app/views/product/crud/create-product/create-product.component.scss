@@ -1,0 +1,28 @@
+.form {
+    display: flex;
+}
+
+.body {
+    margin: 40px 0 40px 40px;
+}
+
+.file-input, .buttons {
+    margin-top: 25px;
+}
+
+.filter {
+    margin-top: 15px;
+}
+
+.red {
+    background-color: rgb(214, 107, 107);
+    color: var(--text-white);
+}
+
+.button {
+    margin-left: 10px;
+}
+
+.invalid span {
+    color: rgb(255, 10, 10);
+}

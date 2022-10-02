@@ -31,12 +31,12 @@ export class ServiceProductService {
     return this.http.get<any>(`${this.urlGetById}${id}`)
   }
 
-  deleteProduct(id: number): Observable<Product> {
+  deleteProduct(id: number): Observable<any> {
     return this.http.delete<any>(`${this.urlDelete}${id}`)
   }
 
   updateProduct(product: Product, id: number): Observable<Product> {
-    return this.http.post<any>(`${this.urlUpdate}${id}`, product)
+    return this.http.put<any>(`${this.urlUpdate}${id}`, product)
   }
 
   getProductsByFilter(product: ProductFilter): Observable<Product[]> {
@@ -87,7 +87,6 @@ export class ServiceProductService {
 
   getFilter() {
     let filter: any = sessionStorage.getItem('filter');
-    console.log(filter)
     if (filter == null) {
       return null;
     }
@@ -102,7 +101,6 @@ export class ServiceProductService {
 
   getSort() {
     let sort: any = sessionStorage.getItem('sort');
-    console.log(sort)
     if (sort == null) {
       return null;
     }
@@ -112,7 +110,6 @@ export class ServiceProductService {
 
   getPageSize() {
     let pageSize: any = sessionStorage.getItem('pageSize');
-    console.log(pageSize)
     if (pageSize == null) {
       return null;
     }
